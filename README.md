@@ -1,6 +1,6 @@
 # Dispatcher
 
-Simple mediator pattern implemented by service extensions.
+Simple mediator pattern implemented by service provider extensions.
 
 ## Registering with IServiceCollection
 
