@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Dispatcher;
 using Dispatcher.Console.UseCases.CreateUser;
 using Dispatcher.Console.UseCases.UpdateUser;
+using Dispatcher.Console.UseCases.Test;
 
 public class Program
 {
@@ -37,5 +38,13 @@ public class Program
             Email = "john.doe@server.com",
             PhoneNumber = "3859155554444"
         });
+
+        var response = await _serviceProvider.DispatchAsync(new DataIn()
+        {
+            A = 8,
+            B = 5
+        });
+
+        Console.WriteLine(response.Sum.ToString());
     }
 }
