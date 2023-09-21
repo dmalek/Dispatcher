@@ -19,7 +19,6 @@ public class Program
         // Setup dispatcher and add request handlers 
         services.AddDispatcher();
         _serviceProvider = services.BuildServiceProvider();       
-        var serviceProvider = new ServiceCollection().BuildServiceProvider();
         
         // Create new user
         await _serviceProvider.DispatchAsync(new CreateUser()
