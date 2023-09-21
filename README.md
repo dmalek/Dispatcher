@@ -39,12 +39,12 @@ Handler:
 ```
 public async Task<DataOut> HandleAsync(DataIn request, CancellationToken cancellationToken = default)
 {
-    var reault = new DataOut()
+    var result = new DataOut()
     {
         Sum = request.A + request.B
     };
 
-    return await Task.FromResult(reault);
+    return await Task.FromResult(result);
 }
 ```
 
