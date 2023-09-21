@@ -2,46 +2,57 @@
 
 Simple mediator pattern implemented by service extensions.
 
+## Registering with IServiceCollection
+
 ```
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Dispatcher;
-using Dispatcher.Console.UseCases.CreateUser;
-using Dispatcher.Console.UseCases.UpdateUser;
+services.AddDispatcher();
+```
+```
+services.AddDispatcher(typeof(Program).Assembly);
+```
 
-public class Program
+This registers:
+- IRequestHandler<>
+- IRequestHandler<,>
+- INotificationHandler<>
+
+## Request/response
+
+Request:
+```
+public record DataIn: IRequest<DataOut>
 {
-    private static IServiceProvider _serviceProvider;
-    public static async Task Main(string[] args)
-    {
-        //setup our DI
-        IServiceCollection services = new ServiceCollection();
-        services.AddLogging(builder =>
-        {
-            builder.AddConsole();
-        });
-
-        // Setup dispatcher and add request handlers 
-        services.AddDispatcher();
-        _serviceProvider = services.BuildServiceProvider();       
-        
-        // Create new user
-        await _serviceProvider.DispatchAsync(new CreateUser()
-        {
-            FirstName = "John",
-            LastName = "Doe",
-            Email = "john.doe@server.com",
-            PhoneNumber = "3859155554444"
-        });
-
-        // Update user data
-        await _serviceProvider.DispatchAsync(new UpdateUser()
-        {
-            FirstName = "John",
-            LastName = "Doe",
-            Email = "john.doe@server.com",
-            PhoneNumber = "3859155554444"
-        });
-    }
+    public int A { get; set; } = 0;
+    public int B { get; set; } = 0;
 }
+```
+
+Response:
+```
+public record DataOut : IResponse
+{
+    public int Sum { get; set; } = 0;
+}
+```
+
+Handler:
+```
+public async Task<DataOut> HandleAsync(DataIn request, CancellationToken cancellationToken = default)
+{
+    var reault = new DataOut()
+    {
+        Sum = request.A + request.B
+    };
+
+    return await Task.FromResult(reault);
+}
+```
+
+Send request and get response:
+```
+var response = await _serviceProvider.DispatchAsync(new DataIn()
+{
+    A = 8,
+    B = 5
+});
 ```
