@@ -44,7 +44,7 @@ public class Program
             A = 8,
             B = 5
         });
-
+        
         Console.WriteLine(response.Sum.ToString());
     }
 }
