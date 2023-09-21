@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{1398D43A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8ECA4566-EAF6-4BFA-B497-E7B66A902AA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dispatcher.Console", "tests\Dispatcher.Console\Dispatcher.Console.csproj", "{3900E11C-3563-47A8-A2D3-6A2868873983}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dispatcher.Console", "samples\Dispatcher.Console\Dispatcher.Console.csproj", "{3900E11C-3563-47A8-A2D3-6A2868873983}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
