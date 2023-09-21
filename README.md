@@ -1,5 +1,14 @@
 # Dispatcher
 
+Simple mediator pattern implemented by service extensions.
+
+```
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Dispatcher;
+using Dispatcher.Console.UseCases.CreateUser;
+using Dispatcher.Console.UseCases.UpdateUser;
+
 public class Program
 {
     private static IServiceProvider _serviceProvider;
@@ -35,3 +44,4 @@ public class Program
         });
     }
 }
+```
