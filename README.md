@@ -60,7 +60,7 @@ var response = await _serviceProvider.DispatchAsync(new DataIn()
 });
 ```
 
-## Events
+## Event
 
 Notification:
 ```
