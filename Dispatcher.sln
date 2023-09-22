@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dispatcher.Console", "sampl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dispatcher.Benchamrks", "tests\Dispatcher.Benchamrks\Dispatcher.Benchamrks.csproj", "{C3AB7859-A047-41F9-BD14-836506FE509F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dispatcher.Tests", "tests\Dispatcher.Tests\Dispatcher.Tests.csproj", "{1F90E860-9958-4EAB-A92C-666D7457D911}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{C3AB7859-A047-41F9-BD14-836506FE509F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3AB7859-A047-41F9-BD14-836506FE509F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3AB7859-A047-41F9-BD14-836506FE509F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F90E860-9958-4EAB-A92C-666D7457D911}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F90E860-9958-4EAB-A92C-666D7457D911}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F90E860-9958-4EAB-A92C-666D7457D911}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F90E860-9958-4EAB-A92C-666D7457D911}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,6 +47,7 @@ Global
 		{68AE4E7C-32CF-417E-82A3-D0851F9B75E0} = {8ECA4566-EAF6-4BFA-B497-E7B66A902AA2}
 		{3900E11C-3563-47A8-A2D3-6A2868873983} = {114C4627-42B0-4632-9591-F3139425FBC8}
 		{C3AB7859-A047-41F9-BD14-836506FE509F} = {1398D43A-FCCA-4D61-98B2-203CEC51E860}
+		{1F90E860-9958-4EAB-A92C-666D7457D911} = {1398D43A-FCCA-4D61-98B2-203CEC51E860}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5AF6D9FE-AD52-40C0-AF9F-519E652126FA}
