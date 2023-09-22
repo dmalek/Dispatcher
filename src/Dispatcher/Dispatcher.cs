@@ -5,7 +5,7 @@ namespace Dispatcher
     public static class Dispatcher
     {
         /// <summary>
-        /// 
+        /// Send request to handler and return response
         /// </summary>
         /// <typeparam name="TResponse"></typeparam>
         /// <param name="serviceProvider"></param>
@@ -30,7 +30,7 @@ namespace Dispatcher
         }
 
         /// <summary>
-        /// 
+        /// Send request to handler 
         /// </summary>
         /// <param name="serviceProvider"></param>
         /// <param name="request"></param>

@@ -5,7 +5,7 @@ namespace Dispatcher
     public static class Publisher
     {
         /// <summary>
-        /// 
+        /// Send notification to services that handles notification
         /// </summary>
         /// <param name="serviceProvider"></param>
         /// <param name="notification"></param>
