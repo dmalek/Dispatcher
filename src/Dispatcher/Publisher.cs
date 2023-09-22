@@ -19,7 +19,6 @@ namespace Dispatcher
                 throw new ArgumentNullException(nameof(notification));
             }
 
-            //using var scope = serviceProvider.CreateScope();
             var handlerType = typeof(INotificationHandler<>).MakeGenericType(notification.GetType());
             IEnumerable<dynamic>? subscribers = serviceProvider.GetServices(handlerType);
 
