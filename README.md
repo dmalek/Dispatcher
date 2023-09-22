@@ -85,12 +85,13 @@ public class UserDataChangedEventHandler_SendEmail : INotificationHandler<UserDa
 
 ## Benchmarks
 
-| Method                                                    | Mean      | Error     | StdDev    |
-|---------------------------------------------------------- |----------:|----------:|----------:|
-| SendingRequests_WithDispatcher                            | 565.24 ns | 11.197 ns | 14.948 ns |
-| PublishingNotifications_WithDispatcher                    | 649.79 ns |  7.833 ns |  6.115 ns |
-| SendingRequests_CallingHandlerFromServiceProvider         |  81.84 ns |  1.601 ns |  1.644 ns |
-| PublishingNotifications_CallingHandlerFromServiceProvider |  97.95 ns |  2.003 ns |  2.936 ns |
-| SendingRequests_CallingHandlerDirectly                    |  51.48 ns |  1.059 ns |  1.219 ns |
-| PublishingNotifications_CallingHandlerDirectly            |  37.33 ns |  0.767 ns |  0.821 ns |
+| Method                                                    | Mean      | Error     | StdDev    | Median    |
+|---------------------------------------------------------- |----------:|----------:|----------:|----------:|
+| SendingRequests_WithDispatcher                            | 573.78 ns | 11.348 ns | 13.069 ns | 569.44 ns |
+| PublishingNotifications_WithDispatcher                    | 701.46 ns | 13.842 ns | 17.999 ns | 703.28 ns |
+| SendingRequests_CallingHandlerFromServiceProvider         |  82.97 ns |  1.669 ns |  2.228 ns |  82.59 ns |
+| PublishingNotifications_CallingHandlerFromServiceProvider |  98.64 ns |  1.967 ns |  3.446 ns |  97.96 ns |
+| SendingRequests_CallingHandlerDirectly                    |  53.99 ns |  1.111 ns |  2.829 ns |  53.45 ns |
+| PublishingNotifications_CallingHandlerDirectly            |  37.72 ns |  0.940 ns |  2.620 ns |  36.92 ns |
+
 
