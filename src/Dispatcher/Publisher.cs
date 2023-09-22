@@ -22,19 +22,14 @@ namespace Dispatcher
             var handlerType = typeof(INotificationHandler<>).MakeGenericType(notification.GetType());
             IEnumerable<dynamic>? subscribers = serviceProvider.GetServices(handlerType);
 
-            var tasks = subscribers
-                .Select(handler =>
-                {
-                    var methodInfo = handlerType.GetMethod(nameof(INotificationHandler<INotification>.ReceiveAsync));
-                    if (methodInfo != null)
-                    {
-                        return (Task)methodInfo.Invoke(handler, new object[] { notification, cancellationToken });
-                    }
-                    return Task.CompletedTask;
-                })
-                .ToArray();
+            
+            foreach (var handler in subscribers)
+            {
+                await (Task)handlerType
+                 .GetMethod(nameof(INotificationHandler<INotification>.ReceiveAsync))?
+                 .Invoke(handler, new object[] { notification, cancellationToken });
 
-            await Task.WhenAll(tasks);
+            }
         }
     }
 }

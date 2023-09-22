@@ -52,7 +52,7 @@ namespace Dispatcher.Benchamrks
         [Benchmark]
         public async Task SendingRequests_CallingHandlerDirectly()
         {
-            var dataHandler = new DataHandler();    
+            var dataHandler = new DataHandler();
             var response = await dataHandler.HandleAsync(_request);
         }
 
