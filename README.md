@@ -37,14 +37,17 @@ public record DataOut : IResponse
 
 Handler:
 ```
-public async Task<DataOut> HandleAsync(DataIn request, CancellationToken cancellationToken = default)
+public class SumHandler : IRequestHandler<DataIn, DataOut>
 {
-    var result = new DataOut()
+    public async Task<DataOut> HandleAsync(DataIn request, CancellationToken cancellationToken = default)
     {
-        Sum = request.A + request.B
-    };
+        var result = new DataOut()
+        {
+            Sum = request.A + request.B
+        };
 
-    return await Task.FromResult(result);
+        return await Task.FromResult(result);
+    }
 }
 ```
 
@@ -55,4 +58,27 @@ var response = await _serviceProvider.DispatchAsync(new DataIn()
     A = 8,
     B = 5
 });
+```
+
+## Events
+
+Notification:
+```
+public class UserDataChangedEvent : INotification
+{
+    public string Email { get; set; }
+    public string PhoneNumber { get; set; }
+}
+```
+
+Event:
+```
+public class UserDataChangedEventHandler_SendEmail : INotificationHandler<UserDataChangedEvent>
+{
+    public async Task ReceiveAsync(UserDataChangedEvent notification, CancellationToken cancellationToken = default)
+    {
+        // Send email to user
+        await Task.CompletedTask;
+    }
+}
 ```
