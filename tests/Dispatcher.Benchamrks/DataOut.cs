@@ -2,6 +2,6 @@
 {
     internal class DataOut : IResponse
     {
-        public int Lenght { get; set; }
+        public int Lenght { get; set; } = 0;
     }
 }

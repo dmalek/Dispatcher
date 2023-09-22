@@ -20,7 +20,7 @@ namespace Dispatcher.Console.UseCases.CreateUser
             var logger = _loggerFactory.CreateLogger<CreateUser>();
             logger.LogInformation($"New user {request.FirstName} {request.LastName} ({request.Email}) has been created.");
 
-            _services.PublishAsync(new UserDataChangedEvent()
+            await _services.PublishAsync(new UserDataChangedEvent()
             {
                 Email = request.Email,
                 PhoneNumber = request.PhoneNumber,

@@ -10,8 +10,7 @@ namespace Dispatcher.Benchamrks
        
         private IServiceProvider _serviceProvider;
 
-        [GlobalSetup]
-        public void GlobalSetup()
+        public Benchmarks()
         {
             var services = new ServiceCollection();
 
@@ -19,6 +18,11 @@ namespace Dispatcher.Benchamrks
             services.AddDispatcher();
 
             _serviceProvider = services.BuildServiceProvider();
+        }
+
+        [GlobalSetup]
+        public void GlobalSetup()
+        {
 
         }
 
@@ -38,7 +42,7 @@ namespace Dispatcher.Benchamrks
         [Benchmark]
         public async Task SendingRequests_CallingHandlerFromServiceProvider()
         {
-            var handler = _serviceProvider.GetService<IRequestHandler<DataIn, DataOut>>();
+            var handler = _serviceProvider.GetRequiredService<IRequestHandler<DataIn, DataOut>>();
             var response = await handler.HandleAsync(_request);
         }
 

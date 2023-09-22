@@ -23,7 +23,7 @@ namespace Dispatcher.Console.UseCases.UpdateUser
             var logger = _loggerFactory.CreateLogger<UpdateUser>();
             logger.LogInformation($"User {request.FirstName} {request.LastName} ({request.Email}) has been updated.");
 
-            _services.PublishAsync(new UserDataChangedEvent()
+            await _services.PublishAsync(new UserDataChangedEvent()
             {
                 Email = request.Email,
                 PhoneNumber = request.PhoneNumber,
