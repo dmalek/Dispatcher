@@ -1,6 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-using Dispatcher;
-using System.Runtime.CompilerServices;
 
 namespace Dispatcher.Tests
 {
@@ -15,19 +13,23 @@ namespace Dispatcher.Tests
         public UnitTest1()
         {
             var services = new ServiceCollection();
-
-            services.AddSingleton(TextWriter.Null);
             services.AddDispatcher();
 
             _serviceProvider = services.BuildServiceProvider();
         }
 
         [TestMethod]
-        public async Task  TestMethod1()
+        public async Task Test_SendRequest()
         {
             var response = await _serviceProvider.DispatchAsync(_request);
             Assert.IsNotNull(response);
             Assert.AreEqual(response.Lenght, 12);
+        }
+
+        [TestMethod]
+        public async Task Test_PublishNotification()
+        {
+            await _serviceProvider.PublishAsync(_notification);           
         }
     }
 }
