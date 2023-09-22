@@ -46,7 +46,7 @@ namespace Dispatcher
             }
 
             var handlerType = typeof(IRequestHandler<>).MakeGenericType(request.GetType());
-            dynamic? handler =serviceProvider.GetRequiredService(handlerType);
+            dynamic? handler = serviceProvider.GetRequiredService(handlerType);
 
             await (Task)handlerType
                  .GetMethod(nameof(IRequestHandler<IRequest>.HandleAsync))?
