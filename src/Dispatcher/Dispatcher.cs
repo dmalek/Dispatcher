@@ -24,9 +24,17 @@ namespace Dispatcher
             var handlerType = typeof(IRequestHandler<,>).MakeGenericType(request.GetType(), typeof(TResponse));
             dynamic? handler = serviceProvider.GetRequiredService(handlerType);
 
-            return await (Task<TResponse>)handlerType
-                .GetMethod(nameof(IRequestHandler<IRequest<TResponse>, TResponse>.HandleAsync))?
-                .Invoke(handler, new object[] { request, cancellationToken });
+            var handleMethod = handlerType?
+                .GetMethod(nameof(IRequestHandler<IRequest<TResponse>, TResponse>.HandleAsync));
+
+            if (handleMethod == null)
+            {
+                // Handle the case when the handlerType or handleMethod is null
+                throw new InvalidOperationException("Invalid handlerType or handleMethod is null.");
+            }
+
+            var response = await (Task<TResponse>)handleMethod.Invoke(handler, new object[] { request, cancellationToken });
+            return response;            
         }
 
         /// <summary>
@@ -48,9 +56,16 @@ namespace Dispatcher
             var handlerType = typeof(IRequestHandler<>).MakeGenericType(request.GetType());
             dynamic? handler = serviceProvider.GetRequiredService(handlerType);
 
-            await (Task)handlerType
-                 .GetMethod(nameof(IRequestHandler<IRequest>.HandleAsync))?
-                 .Invoke(handler, new object[] { request, cancellationToken });
+            var handleMethod = handlerType
+                 .GetMethod(nameof(IRequestHandler<IRequest>.HandleAsync));
+
+            if (handleMethod == null)
+            {
+                // Handle the case when the handlerType or handleMethod is null
+                throw new InvalidOperationException("Invalid handlerType or handleMethod is null.");
+            }
+
+            await (Task)handleMethod.Invoke(handler, new object[] { request, cancellationToken });
         }
     }
 }

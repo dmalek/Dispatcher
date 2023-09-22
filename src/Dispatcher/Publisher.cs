@@ -20,15 +20,21 @@ namespace Dispatcher
             }
 
             var handlerType = typeof(INotificationHandler<>).MakeGenericType(notification.GetType());
-            IEnumerable<dynamic>? subscribers = serviceProvider.GetServices(handlerType);
+            IEnumerable<dynamic?>? subscribers = serviceProvider.GetServices(handlerType);
 
             
             foreach (var handler in subscribers)
             {
-                await (Task)handlerType
-                 .GetMethod(nameof(INotificationHandler<INotification>.ReceiveAsync))?
-                 .Invoke(handler, new object[] { notification, cancellationToken });
+                var handleMethod = handlerType
+                 .GetMethod(nameof(INotificationHandler<INotification>.ReceiveAsync));
 
+                if (handleMethod == null)
+                {
+                    // Handle the case when the handlerType or handleMethod is null
+                    throw new InvalidOperationException("Invalid handlerType or handleMethod is null.");
+                }
+
+                 await handleMethod.Invoke(handler, new object[] { notification, cancellationToken });
             }
         }
     }

@@ -7,7 +7,8 @@ using Dispatcher.Console.UseCases.Test;
 
 public class Program
 {
-    private static IServiceProvider _serviceProvider;
+    private static IServiceProvider? _serviceProvider = null;
+
     public static async Task Main(string[] args)
     {
         //setup our DI
