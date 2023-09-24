@@ -21,7 +21,6 @@ namespace Dispatcher
 
             var handlerType = typeof(INotificationHandler<>).MakeGenericType(notification.GetType());
             IEnumerable<dynamic?>? subscribers = serviceProvider.GetServices(handlerType);
-
             
             foreach (var handler in subscribers)
             {
