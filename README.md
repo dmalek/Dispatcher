@@ -3,6 +3,8 @@
  
 Dipatcher is designed to be a simple, generic and flexible way to dispatch requests to their corresponding handlers using dependency injection and async processing. It allows you to send a request, and it dynamically determines the appropriate handler based on the request type, invokes the handler's HandleAsync method, and returns the response. 
 
+> Simple as this: **response = await _serviceProvider.DispatchAsync(request);**
+
 ## Registering with IServiceCollection
 
 ```
